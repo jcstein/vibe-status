@@ -23,5 +23,9 @@ export default async function Home() {
     fetchedAt: new Date().toISOString(),
   };
 
-  return <Dashboard initialData={data} serviceKeys={serviceKeys} isLoggedIn={!!session?.user} />;
+  const user = session?.user
+    ? { name: session.user.name ?? undefined, image: session.user.image ?? undefined }
+    : undefined;
+
+  return <Dashboard initialData={data} serviceKeys={serviceKeys} user={user} />;
 }

@@ -10,10 +10,10 @@ import type { DashboardData, ServiceStatus } from "@/lib/types";
 interface Props {
   initialData: DashboardData;
   serviceKeys?: string[];
-  isLoggedIn?: boolean;
+  user?: { name?: string; image?: string };
 }
 
-export function Dashboard({ initialData, serviceKeys, isLoggedIn }: Props) {
+export function Dashboard({ initialData, serviceKeys, user }: Props) {
   const [services, setServices] = useState<ServiceStatus[]>(
     initialData.services
   );
@@ -39,7 +39,7 @@ export function Dashboard({ initialData, serviceKeys, isLoggedIn }: Props) {
   return (
     <div className="ocean-bg min-h-screen">
       <div className="mx-auto max-w-2xl space-y-4 px-5 py-8 sm:py-12">
-        <Header lastRefresh={fetchedAt} indicators={indicators} isLoggedIn={isLoggedIn} />
+        <Header lastRefresh={fetchedAt} indicators={indicators} user={user} />
         <div className="space-y-3">
           {services.map((service, i) => (
             <ServiceCard key={service.key} service={service} index={i} />
