@@ -34,15 +34,15 @@ export function Dashboard({ initialData }: Props) {
   const indicators = services.map((s) => s.indicator);
 
   return (
-    <div className="dot-grid min-h-screen">
-      <div className="mx-auto max-w-2xl space-y-5 px-5 py-8 sm:py-12">
+    <div className="ocean-bg min-h-screen">
+      <div className="mx-auto max-w-2xl space-y-4 px-5 py-8 sm:py-12">
         <Header lastRefresh={fetchedAt} indicators={indicators} />
         <div className="space-y-3">
           {services.map((service, i) => (
             <ServiceCard key={service.key} service={service} index={i} />
           ))}
         </div>
-        <footer className="pt-4 text-center font-mono text-[10px] text-muted">
+        <footer className="pt-6 text-center text-xs text-muted">
           polling every 60s &middot; powered by statuspage api
         </footer>
       </div>

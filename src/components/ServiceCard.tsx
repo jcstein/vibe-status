@@ -21,15 +21,15 @@ export function ServiceCard({ service, index }: Props) {
   const borderColor = getStatusBorderColor(service.indicator);
   const textColor = getStatusTextColor(service.indicator);
   const glow = getStatusGlow(service.indicator);
+  const hasIssue =
+    service.indicator !== "none" && service.indicator !== "unknown";
 
   return (
     <div
-      className={`card-animate border-l-4 ${borderColor} rounded-lg border border-border bg-surface transition-all duration-200 hover:bg-surface-hover ${
-        service.indicator !== "none" && service.indicator !== "unknown"
-          ? glow
-          : ""
+      className={`card-animate rounded-2xl border border-border border-l-4 ${borderColor} bg-surface transition-all duration-200 hover:bg-surface-hover ${
+        hasIssue ? glow : ""
       }`}
-      style={{ animationDelay: `${index * 60}ms` }}
+      style={{ animationDelay: `${index * 70}ms` }}
     >
       <button
         onClick={() => setExpanded(!expanded)}
@@ -39,10 +39,10 @@ export function ServiceCard({ service, index }: Props) {
         <div className="flex items-center gap-4">
           <StatusIndicator status={service.indicator} />
           <div>
-            <h3 className="font-mono text-sm font-semibold tracking-tight text-foreground">
+            <h3 className="text-sm font-semibold text-foreground">
               {service.name}
             </h3>
-            <p className={`mt-0.5 font-mono text-xs ${textColor}`}>
+            <p className={`mt-0.5 text-xs ${textColor}`}>
               {service.error
                 ? "Unable to fetch status"
                 : getStatusLabel(service.indicator)}
@@ -50,7 +50,7 @@ export function ServiceCard({ service, index }: Props) {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="hidden font-mono text-[10px] text-muted sm:inline">
+          <span className="hidden text-xs text-muted sm:inline">
             {service.components.length} components
           </span>
           <svg
@@ -74,7 +74,7 @@ export function ServiceCard({ service, index }: Props) {
       {expanded && (
         <div className="expand-animate border-t border-border px-5 pb-4 pt-3">
           <ComponentList components={service.components} />
-          <div className="mt-3 flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[10px] text-muted">
+          <div className="mt-3 flex items-center justify-between border-t border-border/50 pt-3 text-[11px] text-muted">
             <a
               href={service.url}
               target="_blank"

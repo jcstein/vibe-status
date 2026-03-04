@@ -11,7 +11,7 @@ interface Props {
 export function ComponentList({ components }: Props) {
   if (components.length === 0) {
     return (
-      <p className="font-mono text-xs text-muted">
+      <p className="text-xs text-muted">
         No component details available.
       </p>
     );
@@ -22,7 +22,7 @@ export function ComponentList({ components }: Props) {
       {components.map((c) => (
         <li
           key={c.id}
-          className="flex items-center justify-between rounded-md bg-background/50 px-3 py-2 font-mono text-xs"
+          className="flex items-center justify-between rounded-lg bg-background/60 px-3 py-2 text-xs"
         >
           <span className="text-foreground/80">{c.name}</span>
           <span className="flex items-center gap-2">

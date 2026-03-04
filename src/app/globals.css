@@ -3,35 +3,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #faf9f7;
-  --foreground: #1a1a1a;
+  --background: #fdf8f0;
+  --foreground: #2c1810;
   --surface: #ffffff;
-  --surface-hover: #f5f4f2;
-  --border: #e8e5e0;
-  --muted: #9c9890;
-  --accent-green: #22c55e;
-  --accent-yellow: #eab308;
-  --accent-orange: #f97316;
-  --accent-red: #ef4444;
-  --accent-blue: #3b82f6;
-  --accent-gray: #a1a1aa;
-  --dot-color: rgba(0, 0, 0, 0.06);
+  --surface-hover: #fef9f3;
+  --border: #e8ddd0;
+  --muted: #a89888;
+  --accent-green: #15b886;
+  --accent-yellow: #e5a40a;
+  --accent-orange: #e87040;
+  --accent-red: #dc3545;
+  --accent-blue: #2898bd;
+  --accent-gray: #a0978e;
+  --ocean-1: #2898bd;
+  --ocean-2: #20b4a8;
+  --sand: #e8ddd0;
 }
 
 .dark {
-  --background: #0c0c0f;
-  --foreground: #e4e4e7;
-  --surface: #18181b;
-  --surface-hover: #1f1f23;
-  --border: #2a2a2e;
-  --muted: #71717a;
+  --background: #0b1a2c;
+  --foreground: #e8ddd0;
+  --surface: #0f2340;
+  --surface-hover: #132a4a;
+  --border: #1a3558;
+  --muted: #6b8aaa;
   --accent-green: #34d399;
-  --accent-yellow: #facc15;
+  --accent-yellow: #fbbf24;
   --accent-orange: #fb923c;
   --accent-red: #f87171;
-  --accent-blue: #60a5fa;
-  --accent-gray: #71717a;
-  --dot-color: rgba(255, 255, 255, 0.04);
+  --accent-blue: #38bdf8;
+  --accent-gray: #64748b;
+  --ocean-1: #1a3558;
+  --ocean-2: #164e63;
+  --sand: #1a3558;
 }
 
 @theme inline {
@@ -47,6 +51,9 @@
   --color-accent-red: var(--accent-red);
   --color-accent-blue: var(--accent-blue);
   --color-accent-gray: var(--accent-gray);
+  --color-ocean-1: var(--ocean-1);
+  --color-ocean-2: var(--ocean-2);
+  --color-sand: var(--sand);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -57,17 +64,11 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Dot grid background */
-.dot-grid {
-  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
 /* Staggered entrance animations */
 @keyframes card-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -76,7 +77,7 @@ body {
 }
 
 .card-animate {
-  animation: card-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: card-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Expand/collapse animation */
@@ -96,7 +97,7 @@ body {
   overflow: hidden;
 }
 
-/* Live pulse for the refresh indicator */
+/* Live pulse */
 @keyframes gentle-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
@@ -123,9 +124,46 @@ body {
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
-/* Status bar glow effect */
-.status-glow-green { box-shadow: 0 0 12px color-mix(in srgb, var(--accent-green) 30%, transparent); }
-.status-glow-yellow { box-shadow: 0 0 12px color-mix(in srgb, var(--accent-yellow) 30%, transparent); }
-.status-glow-orange { box-shadow: 0 0 12px color-mix(in srgb, var(--accent-orange) 30%, transparent); }
-.status-glow-red { box-shadow: 0 0 12px color-mix(in srgb, var(--accent-red) 40%, transparent); }
-.status-glow-blue { box-shadow: 0 0 12px color-mix(in srgb, var(--accent-blue) 30%, transparent); }
+/* Ocean wave animation */
+@keyframes wave-drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.wave-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.wave-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: wave-drift 4s linear infinite;
+}
+
+/* Gentle floating animation for the island emoji */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Status glow effects */
+.status-glow-green { box-shadow: 0 0 16px color-mix(in srgb, var(--accent-green) 25%, transparent); }
+.status-glow-yellow { box-shadow: 0 0 16px color-mix(in srgb, var(--accent-yellow) 25%, transparent); }
+.status-glow-orange { box-shadow: 0 0 16px color-mix(in srgb, var(--accent-orange) 25%, transparent); }
+.status-glow-red { box-shadow: 0 0 16px color-mix(in srgb, var(--accent-red) 35%, transparent); }
+.status-glow-blue { box-shadow: 0 0 16px color-mix(in srgb, var(--accent-blue) 25%, transparent); }
+
+/* Ocean gradient background */
+.ocean-bg {
+  background:
+    linear-gradient(
+      180deg,
+      var(--background) 0%,
+      color-mix(in srgb, var(--ocean-2) 8%, var(--background)) 100%
+    );
+}

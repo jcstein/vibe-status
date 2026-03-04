@@ -88,17 +88,17 @@ export function getStatusTextColor(indicator: StatusIndicatorValue): string {
 export function getStatusLabel(indicator: StatusIndicatorValue): string {
   switch (indicator) {
     case "none":
-      return "Operational";
+      return "Smooth sailing";
     case "minor":
-      return "Minor Issue";
+      return "Choppy waters";
     case "major":
-      return "Major Issue";
+      return "Rough seas";
     case "critical":
-      return "Critical";
+      return "Storm warning";
     case "maintenance":
-      return "Maintenance";
+      return "In dry dock";
     case "unknown":
-      return "Unknown";
+      return "Lost at sea";
   }
 }
 
@@ -138,16 +138,16 @@ export function getComponentStatusLabel(status: string): string {
 
 export function getAggregateStatus(
   indicators: StatusIndicatorValue[]
-): { label: string; indicator: StatusIndicatorValue } {
+): { label: string; indicator: StatusIndicatorValue; emoji: string } {
   if (indicators.some((i) => i === "critical"))
-    return { label: "Critical Issues Detected", indicator: "critical" };
+    return { label: "Storm Warning", indicator: "critical", emoji: "\u26C8\uFE0F" };
   if (indicators.some((i) => i === "major"))
-    return { label: "Major Issues Detected", indicator: "major" };
+    return { label: "Rough Seas Ahead", indicator: "major", emoji: "\uD83C\uDF0A" };
   if (indicators.some((i) => i === "minor"))
-    return { label: "Minor Issues Detected", indicator: "minor" };
+    return { label: "Choppy Waters", indicator: "minor", emoji: "\u26F5" };
   if (indicators.some((i) => i === "maintenance"))
-    return { label: "Maintenance In Progress", indicator: "maintenance" };
+    return { label: "Ships In Dry Dock", indicator: "maintenance", emoji: "\uD83D\uDD27" };
   if (indicators.some((i) => i === "unknown"))
-    return { label: "Some Services Unreachable", indicator: "unknown" };
-  return { label: "All Systems Operational", indicator: "none" };
+    return { label: "Fog Rolling In", indicator: "unknown", emoji: "\uD83C\uDF2B\uFE0F" };
+  return { label: "Island Vibes", indicator: "none", emoji: "\uD83C\uDFDD\uFE0F" };
 }
