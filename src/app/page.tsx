@@ -13,9 +13,5 @@ export default async function Home() {
     fetchedAt: new Date().toISOString(),
   };
 
-  return (
-    <main className="min-h-screen bg-gray-50 dark:bg-slate-900">
-      <Dashboard initialData={data} />
-    </main>
-  );
+  return <Dashboard initialData={data} />;
 }

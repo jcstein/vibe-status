@@ -1,23 +1,39 @@
 export default function Loading() {
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-slate-900">
-      <div className="mx-auto max-w-4xl space-y-6 p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="h-8 w-40 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
-            <div className="mt-2 h-4 w-56 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+    <div className="dot-grid min-h-screen">
+      <div className="mx-auto max-w-2xl space-y-5 px-5 py-8 sm:py-12">
+        {/* Header skeleton */}
+        <div className="space-y-6">
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="skeleton h-9 w-48 rounded" />
+              <div className="skeleton mt-2 h-3 w-36 rounded" />
+            </div>
+            <div className="skeleton h-8 w-8 rounded-lg" />
           </div>
-          <div className="h-9 w-9 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700" />
+          <div className="skeleton h-12 w-full rounded-lg" />
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+
+        {/* Card skeletons */}
+        <div className="space-y-3">
           {Array.from({ length: 7 }).map((_, i) => (
             <div
               key={i}
-              className="h-24 animate-pulse rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
-            />
+              className="card-animate rounded-lg border border-border border-l-4 border-l-accent-gray bg-surface"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
+              <div className="flex items-center gap-4 px-5 py-4">
+                <div className="skeleton h-2.5 w-2.5 rounded-full" />
+                <div className="flex-1">
+                  <div className="skeleton h-4 w-24 rounded" />
+                  <div className="skeleton mt-1.5 h-3 w-16 rounded" />
+                </div>
+                <div className="skeleton h-3 w-20 rounded" />
+              </div>
+            </div>
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -12,7 +12,9 @@ interface Props {
 }
 
 export function Dashboard({ initialData }: Props) {
-  const [services, setServices] = useState<ServiceStatus[]>(initialData.services);
+  const [services, setServices] = useState<ServiceStatus[]>(
+    initialData.services
+  );
   const [fetchedAt, setFetchedAt] = useState<string>(initialData.fetchedAt);
 
   const refresh = useCallback(async () => {
@@ -29,13 +31,20 @@ export function Dashboard({ initialData }: Props) {
 
   usePolling(refresh, 60_000);
 
+  const indicators = services.map((s) => s.indicator);
+
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-6">
-      <Header lastRefresh={fetchedAt} />
-      <div className="grid gap-4 sm:grid-cols-2">
-        {services.map((service) => (
-          <ServiceCard key={service.key} service={service} />
-        ))}
+    <div className="dot-grid min-h-screen">
+      <div className="mx-auto max-w-2xl space-y-5 px-5 py-8 sm:py-12">
+        <Header lastRefresh={fetchedAt} indicators={indicators} />
+        <div className="space-y-3">
+          {services.map((service, i) => (
+            <ServiceCard key={service.key} service={service} index={i} />
+          ))}
+        </div>
+        <footer className="pt-4 text-center font-mono text-[10px] text-muted">
+          polling every 60s &middot; powered by statuspage api
+        </footer>
       </div>
     </div>
   );

@@ -1,29 +1,56 @@
 "use client";
 
 import { ThemeToggle } from "./ThemeToggle";
+import { StatusIndicator } from "./StatusIndicator";
+import {
+  getAggregateStatus,
+  getStatusTextColor,
+} from "@/lib/status-utils";
+import type { StatusIndicatorValue } from "@/lib/types";
 
 interface Props {
   lastRefresh: string | null;
+  indicators: StatusIndicatorValue[];
 }
 
-export function Header({ lastRefresh }: Props) {
+export function Header({ lastRefresh, indicators }: Props) {
+  const aggregate = getAggregateStatus(indicators);
+  const textColor = getStatusTextColor(aggregate.indicator);
+
   return (
-    <header className="flex items-center justify-between">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          Vibe Status
-        </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Dev essentials at a glance
-        </p>
+    <header className="space-y-6">
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="font-mono text-3xl font-bold tracking-tighter text-foreground">
+            vibe<span className="text-muted">/</span>status
+          </h1>
+          <p className="mt-1 font-mono text-xs text-muted">
+            dev essentials &mdash; live monitoring
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          {lastRefresh && (
+            <div className="flex items-center gap-2">
+              <span className="live-pulse inline-block h-1.5 w-1.5 rounded-full bg-accent-green" />
+              <span className="font-mono text-[10px] text-muted">
+                {new Date(lastRefresh).toLocaleTimeString()}
+              </span>
+            </div>
+          )}
+          <ThemeToggle />
+        </div>
       </div>
-      <div className="flex items-center gap-3">
-        {lastRefresh && (
-          <span className="text-xs text-gray-400">
-            Refreshed {new Date(lastRefresh).toLocaleTimeString()}
-          </span>
-        )}
-        <ThemeToggle />
+
+      {/* Aggregate status banner */}
+      <div className="flex items-center gap-3 rounded-lg border border-border bg-surface px-5 py-3">
+        <StatusIndicator status={aggregate.indicator} size="lg" />
+        <span className={`font-mono text-sm font-semibold ${textColor}`}>
+          {aggregate.label}
+        </span>
+        <span className="ml-auto font-mono text-[10px] text-muted">
+          {indicators.filter((i) => i === "none").length}/{indicators.length}{" "}
+          services healthy
+        </span>
       </div>
     </header>
   );
