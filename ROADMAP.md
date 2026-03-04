@@ -16,6 +16,16 @@
 - [ ] Loading/error states — toast or feedback on ServicePicker save
 - [ ] Mobile polish — header, avatar dropdown, ServicePicker grid on small screens
 - [ ] Speed Insights — add @vercel/speed-insights for Web Vitals
+- [x] Add new services (Statuspage-compatible): Supabase, PostHog, Hotjar, ElevenLabs, Dropbox, Resend
+
+## Backlog — Investigate
+- [ ] Neon — uses status.io, needs custom fetcher
+- [ ] Firebase — Google custom status dashboard, needs custom fetcher
+- [ ] Google Analytics — Google Workspace dashboard, needs custom fetcher
+- [ ] Google Drive — Google Workspace dashboard, needs custom fetcher
+- [ ] Gemini — Google custom status page, needs custom fetcher
+- [ ] Firecrawl — uses Better Stack, needs custom fetcher
+- [ ] Nano-banana — community wrappers around Gemini image gen, no independent status page
 
 ## Ideas
 - [ ] Drag-and-drop reordering of services

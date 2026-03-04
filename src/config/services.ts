@@ -9,6 +9,7 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
   // AI
   { key: "claude", name: "Claude", statusPageUrl: "https://status.claude.com", category: "AI" },
   { key: "openai", name: "OpenAI", statusPageUrl: "https://status.openai.com", category: "AI" },
+  { key: "elevenlabs", name: "ElevenLabs", statusPageUrl: "https://status.elevenlabs.io", category: "AI" },
 
   // Dev Tools
   { key: "github", name: "GitHub", statusPageUrl: "https://www.githubstatus.com", category: "Dev Tools" },
@@ -19,6 +20,9 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
   { key: "jira", name: "Jira", statusPageUrl: "https://jira-software.status.atlassian.com", category: "Dev Tools" },
   { key: "launchdarkly", name: "LaunchDarkly", statusPageUrl: "https://status.launchdarkly.com", category: "Dev Tools" },
 
+  // Database
+  { key: "supabase", name: "Supabase", statusPageUrl: "https://status.supabase.com", category: "Database" },
+
   // Cloud
   { key: "vercel", name: "Vercel", statusPageUrl: "https://www.vercel-status.com", category: "Cloud" },
   { key: "netlify", name: "Netlify", statusPageUrl: "https://www.netlifystatus.com", category: "Cloud" },
@@ -27,12 +31,22 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
   { key: "digitalocean", name: "DigitalOcean", statusPageUrl: "https://status.digitalocean.com", category: "Cloud" },
   { key: "cloudflare", name: "Cloudflare", statusPageUrl: "https://www.cloudflarestatus.com", category: "Cloud" },
 
+  // Analytics
+  { key: "posthog", name: "PostHog", statusPageUrl: "https://www.posthogstatus.com", category: "Analytics" },
+  { key: "hotjar", name: "Hotjar", statusPageUrl: "https://status.hotjar.com", category: "Analytics" },
+
   // Design
   { key: "figma", name: "Figma", statusPageUrl: "https://status.figma.com", category: "Design" },
 
   // Comms
   { key: "discord", name: "Discord", statusPageUrl: "https://discordstatus.com", category: "Comms" },
   { key: "zoom", name: "Zoom", statusPageUrl: "https://status.zoom.us", category: "Comms" },
+
+  // Storage
+  { key: "dropbox", name: "Dropbox", statusPageUrl: "https://status.dropbox.com", category: "Storage" },
+
+  // Email
+  { key: "resend", name: "Resend", statusPageUrl: "https://resend-status.com", category: "Email" },
 
   // Infra
   { key: "pagerduty", name: "PagerDuty", statusPageUrl: "https://status.pagerduty.com", category: "Infra" },
