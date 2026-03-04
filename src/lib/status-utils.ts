@@ -136,18 +136,31 @@ export function getComponentStatusLabel(status: string): string {
   }
 }
 
+const severityScore: Record<StatusIndicatorValue, number> = {
+  none: 0,
+  unknown: 0.25,
+  maintenance: 0.25,
+  minor: 1,
+  major: 2,
+  critical: 3,
+};
+
 export function getAggregateStatus(
   indicators: StatusIndicatorValue[]
 ): { label: string; indicator: StatusIndicatorValue; emoji: string } {
-  if (indicators.some((i) => i === "critical"))
-    return { label: "Storm Warning", indicator: "critical", emoji: "\u26C8\uFE0F" };
-  if (indicators.some((i) => i === "major"))
+  if (indicators.length === 0)
+    return { label: "No Services", indicator: "unknown", emoji: "\uD83C\uDF2B\uFE0F" };
+
+  const avg =
+    indicators.reduce((sum, i) => sum + severityScore[i], 0) / indicators.length;
+
+  if (avg === 0)
+    return { label: "Island Vibes", indicator: "none", emoji: "\uD83C\uDFDD\uFE0F" };
+  if (avg <= 0.4)
+    return { label: "Slightly Choppy", indicator: "minor", emoji: "\u26F5" };
+  if (avg <= 1)
+    return { label: "Choppy Waters", indicator: "minor", emoji: "\uD83C\uDF0A" };
+  if (avg <= 2)
     return { label: "Rough Seas Ahead", indicator: "major", emoji: "\uD83C\uDF0A" };
-  if (indicators.some((i) => i === "minor"))
-    return { label: "Choppy Waters", indicator: "minor", emoji: "\u26F5" };
-  if (indicators.some((i) => i === "maintenance"))
-    return { label: "Ships In Dry Dock", indicator: "maintenance", emoji: "\uD83D\uDD27" };
-  if (indicators.some((i) => i === "unknown"))
-    return { label: "Fog Rolling In", indicator: "unknown", emoji: "\uD83C\uDF2B\uFE0F" };
-  return { label: "Island Vibes", indicator: "none", emoji: "\uD83C\uDFDD\uFE0F" };
+  return { label: "Storm Warning", indicator: "critical", emoji: "\u26C8\uFE0F" };
 }
