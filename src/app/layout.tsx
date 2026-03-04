@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Vibe Status — Dev Service Dashboard",
   description:
     "Real-time status dashboard for developer essentials: Claude, GitHub, Vercel, Netlify, npm, Linear, and Figma.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

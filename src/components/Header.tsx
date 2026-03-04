@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import { StatusIndicator } from "./StatusIndicator";
 import {
@@ -21,10 +22,15 @@ export function Header({ lastRefresh, indicators }: Props) {
     <header className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="font-mono text-3xl font-bold tracking-tighter text-foreground">
-            vibe<span className="text-muted">/</span>status
-          </h1>
-          <p className="mt-1 font-mono text-xs text-muted">
+          <Image
+            src="/logo.svg"
+            alt="vibe/status"
+            width={200}
+            height={40}
+            priority
+            className="dark:invert"
+          />
+          <p className="mt-1 pl-1 font-mono text-xs text-muted">
             dev essentials &mdash; live monitoring
           </p>
         </div>
