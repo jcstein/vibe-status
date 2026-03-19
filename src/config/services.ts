@@ -1,8 +1,12 @@
+export type FetcherType = "statuspage" | "statusio" | "google-incidents";
+
 export interface ServiceConfig {
   key: string;
   name: string;
   statusPageUrl: string;
   category: string;
+  fetcherType?: FetcherType;
+  fetcherConfig?: Record<string, string>;
 }
 
 export const SERVICE_CATALOG: ServiceConfig[] = [
@@ -10,6 +14,7 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
   { key: "claude", name: "Claude", statusPageUrl: "https://status.claude.com", category: "AI" },
   { key: "openai", name: "OpenAI", statusPageUrl: "https://status.openai.com", category: "AI" },
   { key: "elevenlabs", name: "ElevenLabs", statusPageUrl: "https://status.elevenlabs.io", category: "AI" },
+  { key: "gemini", name: "Gemini", statusPageUrl: "https://status.cloud.google.com", category: "AI", fetcherType: "google-incidents", fetcherConfig: { incidentsUrl: "https://status.cloud.google.com/incidents.json", productName: "Vertex Gemini API" } },
 
   // Dev Tools
   { key: "github", name: "GitHub", statusPageUrl: "https://www.githubstatus.com", category: "Dev Tools" },
@@ -22,6 +27,7 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
 
   // Database
   { key: "supabase", name: "Supabase", statusPageUrl: "https://status.supabase.com", category: "Database" },
+  { key: "neon", name: "Neon", statusPageUrl: "https://neonstatus.com", category: "Database", fetcherType: "statusio", fetcherConfig: { pageId: "6878fc85709daa75be6c7e3c" } },
 
   // Cloud
   { key: "vercel", name: "Vercel", statusPageUrl: "https://www.vercel-status.com", category: "Cloud" },
@@ -47,6 +53,11 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
 
   // Email
   { key: "resend", name: "Resend", statusPageUrl: "https://resend-status.com", category: "Email" },
+
+  // Google
+  { key: "firebase", name: "Firebase", statusPageUrl: "https://status.firebase.google.com", category: "Cloud", fetcherType: "google-incidents", fetcherConfig: { incidentsUrl: "https://status.firebase.google.com/incidents.json" } },
+  { key: "google-drive", name: "Google Drive", statusPageUrl: "https://www.google.com/appsstatus/dashboard", category: "Storage", fetcherType: "google-incidents", fetcherConfig: { incidentsUrl: "https://www.google.com/appsstatus/dashboard/incidents.json", productName: "Google Drive" } },
+  { key: "google-analytics", name: "Google Analytics", statusPageUrl: "https://www.google.com/appsstatus/dashboard", category: "Analytics", fetcherType: "google-incidents", fetcherConfig: { incidentsUrl: "https://www.google.com/appsstatus/dashboard/incidents.json", productName: "Google Analytics" } },
 
   // Infra
   { key: "pagerduty", name: "PagerDuty", statusPageUrl: "https://status.pagerduty.com", category: "Infra" },
