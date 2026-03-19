@@ -18,7 +18,7 @@ export function ComponentList({ components }: Props) {
   }
 
   return (
-    <ul className="space-y-1.5">
+    <ul className="max-h-[400px] space-y-1.5 overflow-y-auto">
       {components.map((c) => (
         <li
           key={c.id}
