@@ -18,6 +18,8 @@ model User {
   sessions      Session[]
   services      UserService[]
 
+  sortPreference String @default("severity")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
