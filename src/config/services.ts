@@ -36,6 +36,7 @@ export const SERVICE_CATALOG: ServiceConfig[] = [
   { key: "render", name: "Render", statusPageUrl: "https://status.render.com", category: "Cloud" },
   { key: "digitalocean", name: "DigitalOcean", statusPageUrl: "https://status.digitalocean.com", category: "Cloud" },
   { key: "cloudflare", name: "Cloudflare", statusPageUrl: "https://www.cloudflarestatus.com", category: "Cloud" },
+  { key: "flyio", name: "Fly.io", statusPageUrl: "https://status.flyio.net", category: "Cloud" },
 
   // Analytics
   { key: "posthog", name: "PostHog", statusPageUrl: "https://www.posthogstatus.com", category: "Analytics" },
