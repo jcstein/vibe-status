@@ -5,7 +5,7 @@ import type { ServiceConfig } from "@/config/services";
 
 async function fetchStatuspage(service: ServiceConfig): Promise<ServiceStatus> {
   const url = `${service.statusPageUrl}/api/v2/summary.json`;
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
@@ -78,7 +78,7 @@ async function fetchStatusIo(service: ServiceConfig): Promise<ServiceStatus> {
   if (!pageId) throw new Error("Missing pageId in fetcherConfig");
 
   const url = `${service.statusPageUrl}/1.0/status/${pageId}`;
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
@@ -137,7 +137,7 @@ async function fetchGoogleIncidents(
   const incidentsUrl = service.fetcherConfig?.incidentsUrl;
   if (!incidentsUrl) throw new Error("Missing incidentsUrl in fetcherConfig");
 
-  const res = await fetch(incidentsUrl, { next: { revalidate: 60 } });
+  const res = await fetch(incidentsUrl);
 
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
